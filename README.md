@@ -1,12 +1,11 @@
 # Sudoku Project
 
-https://medium.com/javascript-in-plain-english/solve-a-sudoku-using-javascript-de456e8c34a5
+## Plan:
 
-## Plan: 
+example of format of sudoku grid below, will have rows indexed 0-8 and columns indexed 0-8, but the getSquare function will index the squares 1-9
 
-example of a sudoku below, will have rows indexed 0-8 and columns indexed 0-8
 ```
-let sudoku = [
+sudoku = [
     [1,2,3,4,5,6,7,8,9],
     [1,2,3,4,5,6,7,8,9],
     [1,2,3,4,5,6,7,8,9],
@@ -19,32 +18,9 @@ let sudoku = [
 ]
 ```
 
-1) create helper funcs<br> 
-- getRow<br>
-- getColumn<br>
-- getSquare<br>
-- isSolved<br>
-- printBoard<br>
+1. create helper funcs<br>
 
-2) create solving functions:<br>
-- Brute Force 
-- One value cell constraint 
-
-
-```
-function solve(board) {
-  let updated = true, solved = false
-    
-  while (updated && !solved) {
-    updated = one_value_cell_constraint(board)
-    solved = is_solved(board)
-  }
-  if (!solved) {
-    board = backtrack_based(board)
-  }
-  return board
-}
-
-```
-- ^ function suggestion that uses the two solving functions to solve the board 
-
+- getRow<br> X
+- getColumn<br>X
+- getSquare<br>X
+- isSolved<br>X
