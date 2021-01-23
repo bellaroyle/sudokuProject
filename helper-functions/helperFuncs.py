@@ -125,14 +125,9 @@ def fillCell(grid,row,col):
     for i in range(1,10):
         if (i not in numsUsed):
             possibilities.append(i)
-    print(possibilities)
     if (len(possibilities) == 1):
         grid[row][col] = possibilities[0]
         return True
     else:
         grid[row][col] = possibilities
-        print(grid[row][col])
-        
         return False 
-print(fillCell(sudoku,0,3))
-print(sudoku)

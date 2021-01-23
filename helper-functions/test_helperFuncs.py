@@ -93,4 +93,4 @@ class TestHelperFuncs(unittest.TestCase):
         ]
         result2 = helperFuncs.fillCell(testSudoku,0,3)
         self.assertEqual(result2, False)
-        # self.assertEqual(testSudoku[0][4], [1,8])
+        self.assertEqual(testSudoku[0][3], [1,8])
