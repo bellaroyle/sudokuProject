@@ -1,27 +1,12 @@
 import numpy as np 
 
-a = np.array([
-    [7, 6, 3, 0, 0, 5, 0, 0, 9],
-    [0, 1, 5, 0, 0, 2, 3, 7, 0],
-    [9, 2, 8, 0, 0, 4, 0, 0, 1],
-    [0, 0, 0, 5, 3, 0, 9, 8, 0],
-    [0, 3, 0, 6, 0, 9, 2, 5, 0],
-    [0, 0, 9, 0, 2, 0, 0, 1, 0],
-    [0, 0, 0, 2, 1, 0, 7, 4, 0],
-    [0, 5, 0, 4, 0, 0, 0, 3, 0],
-    [0, 8, 0, 0, 5, 3, 1, 0, 0,],
-])
-
-# print(a[1])
-
-
 def getRow(grid,row):
     return grid[row]
 
 def getColumn(grid,column):
     col=[]
     for i in range (9):
-        col.append(a[i][column])
+        col.append(grid[i][column])
     return col
 
 def getSquare(grid,square):
@@ -43,4 +28,26 @@ def getSquare(grid,square):
                 inSquare.append(grid[row][column])
     return inSquare
 
+def isSolved(grid):
+    allNums=[1,2,3,4,5,6,7,8,9]
 
+    rowSolved = []
+    colSolved = []
+    squareSolved = []
+
+    for i in range(9):
+        rowSolved.append((np.sort(getRow(grid,i)) == allNums).all())
+    if (False in rowSolved):
+        return False
+
+    for j in range(9):
+        colSolved.append((np.sort(getColumn(grid,j)) == allNums).all())
+    if (False in colSolved):
+        return False
+
+    for k in range(1,10):
+        squareSolved.append((np.sort(getSquare(grid,k)) == allNums).all())
+    if (False in squareSolved):
+        return False
+    
+    return True
