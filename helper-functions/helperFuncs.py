@@ -1,15 +1,19 @@
 import numpy as np 
 
 def getRow(grid,row):
+    # function takes a sudoku grid and a row index and returns the values in the row
     return grid[row]
 
 def getColumn(grid,column):
+        # function takes a sudoku grid and a column index and returns the values in the column
     col=[]
     for i in range (9):
         col.append(grid[i][column])
     return col
 
 def getSquare(grid,square):
+        # function takes a sudoku grid and a square index and returns the values in the square
+
     squareCoordinates = [
         [1, 1, 1, 2, 2, 2, 3, 3, 3],
         [1, 1, 1, 2, 2, 2, 3, 3, 3],
@@ -29,6 +33,8 @@ def getSquare(grid,square):
     return inSquare
 
 def isSolved(grid):
+        # function takes a sudoku grid and checks all rows, columns and squares to see if it is solved 
+        # returns a boolean
     allNums=[1,2,3,4,5,6,7,8,9]
 
     rowSolved = []
@@ -51,3 +57,4 @@ def isSolved(grid):
         return False
     
     return True
+
