@@ -106,7 +106,7 @@ def isSolved(grid):
             if ( not c == allNums):
                 return False 
         
-        rowsToCheck = [0,3,6]
+        rowsToCheck = [1,3,6]
         colsToCheck = [0,3,6]
         for row in rowsToCheck:
             for col in colsToCheck:
@@ -121,8 +121,6 @@ def isSolved(grid):
     else :
         return False
 
-
-isSolved(solvedSudoku)
 
 def fillCell(grid,row,col):
     # finds all possibilities for a given, empty cell, and stores them in a sub array 
@@ -156,3 +154,61 @@ def fillGrid(grid):
     return grid
 
 
+def completeSudoku(grid):
+    i = 0
+
+    while isSolved(grid) == False:
+        fillGrid(grid)
+        i += 1
+        print(i)
+        if i == 20:
+            # return "sudoku too difficult"
+            break
+    
+    return grid
+
+def printSudoku(grid):
+    print('-------------------------')
+    print ('| ' + str(grid[0][0]) + ' ' + str(grid[0][1]) + ' ' + str(grid[0][2]) + ' | ' +  str(grid[0][3]) + ' ' + str(grid[0][4]) + ' ' + str(grid[0][5]) + ' | ' + str(grid[0][6]) + ' ' + str(grid[0][7]) + ' ' + str(grid[0][8]) + ' |')
+    print ('| ' + str(grid[1][0]) + ' ' + str(grid[1][1]) + ' ' + str(grid[1][2]) + ' | ' +  str(grid[1][3]) + ' ' + str(grid[1][4]) + ' ' + str(grid[1][5]) + ' | ' + str(grid[1][6]) + ' ' + str(grid[1][7]) + ' ' + str(grid[1][8]) + ' |')
+    print ('| ' + str(grid[2][0]) + ' ' + str(grid[2][1]) + ' ' + str(grid[2][2]) + ' | ' +  str(grid[2][3]) + ' ' + str(grid[2][4]) + ' ' + str(grid[2][5]) + ' | ' + str(grid[2][6]) + ' ' + str(grid[2][7]) + ' ' + str(grid[2][8]) + ' |')
+    print('-------------------------')
+    print ('| ' + str(grid[3][0]) + ' ' + str(grid[3][1]) + ' ' + str(grid[3][2]) + ' | ' +  str(grid[3][3]) + ' ' + str(grid[3][4]) + ' ' + str(grid[3][5]) + ' | ' + str(grid[3][6]) + ' ' + str(grid[3][7]) + ' ' + str(grid[3][8]) + ' |')
+    print ('| ' + str(grid[4][0]) + ' ' + str(grid[4][1]) + ' ' + str(grid[4][2]) + ' | ' +  str(grid[4][3]) + ' ' + str(grid[4][4]) + ' ' + str(grid[4][5]) + ' | ' + str(grid[4][6]) + ' ' + str(grid[4][7]) + ' ' + str(grid[4][8]) + ' |')
+    print ('| ' + str(grid[5][0]) + ' ' + str(grid[5][1]) + ' ' + str(grid[5][2]) + ' | ' +  str(grid[5][3]) + ' ' + str(grid[5][4]) + ' ' + str(grid[5][5]) + ' | ' + str(grid[5][6]) + ' ' + str(grid[5][7]) + ' ' + str(grid[5][8]) + ' |')
+    print('-------------------------')
+    print ('| ' + str(grid[6][0]) + ' ' + str(grid[6][1]) + ' ' + str(grid[6][2]) + ' | ' +  str(grid[6][3]) + ' ' + str(grid[6][4]) + ' ' + str(grid[6][5]) + ' | ' + str(grid[6][6]) + ' ' + str(grid[6][7]) + ' ' + str(grid[6][8]) + ' |')
+    print ('| ' + str(grid[7][0]) + ' ' + str(grid[7][1]) + ' ' + str(grid[7][2]) + ' | ' +  str(grid[7][3]) + ' ' + str(grid[7][4]) + ' ' + str(grid[7][5]) + ' | ' + str(grid[7][6]) + ' ' + str(grid[7][7]) + ' ' + str(grid[7][8]) + ' |')
+    print ('| ' + str(grid[8][0]) + ' ' + str(grid[8][1]) + ' ' + str(grid[8][2]) + ' | ' +  str(grid[8][3]) + ' ' + str(grid[8][4]) + ' ' + str(grid[8][5]) + ' | ' + str(grid[8][6]) + ' ' + str(grid[8][7]) + ' ' + str(grid[8][8]) + ' |')
+    print('-------------------------')
+
+    return grid
+
+
+# too hard
+# difficult = [
+#         [[], [], [], [], 7, 8, 5, [], []],
+#         [[], [], 4, [], [], [], [], 2, []],
+#         [1, [], [], [], [], [], [], 6, 7],
+#         [[], [], [], [], [], [], 9, [], []],
+#         [[], [], [], 9, [], [], [], 7, []],
+#         [6, 4, [], 2, [], [], [], [], 8],
+#         [[], [], 8, [], [], [], [], [], []],
+#         [7, [], [], 1, [], 6, [], [], 2],
+#         [[], 9, [], [], [], [], [], 5, []]
+# ];
+
+# difficult = [
+#         [4, [], [], 8, 6, [], [], [], []],
+#         [2, [], 7, [], [], 1, [], [], []],
+#         [6, [], [], [], 5, [], 3, [], []],
+#         [[], [], 1, 6, 2, 8, [], 9, []],
+#         [9, [], [], [], [], [], [], [], 3],
+#         [[], 6, [], 7, 9, 3, 2, [], []],
+#         [[], [], 9, [], 1, [], [], [], 6],
+#         [[], [], [], 3, [], [], 5, [], 4],
+#         [[], [], [], [], 8, 6, [], [], 2]
+# ];
+
+# difficultResult = completeSudoku(difficult)
+# printSudoku(difficultResult)

@@ -165,3 +165,18 @@ class TestHelperFuncs(unittest.TestCase):
                     assert(isinstance(cell,int))
                 
     
+    def test_completeSudoku(self):
+        #  returns completed sudoku
+        testSudoku = [
+            [7, 6, 3, [], [], 5, [], [], 9],
+            [[], 1, 5, [], [], 2, 3, 7, []],
+            [9, 2, 8, [], [], 4, [], [], 1],
+            [[], [], [], 5, 3, [], 9, 8, []],
+            [[], 3, [], 6, [], 9, 2, 5, []],
+            [[], [], 9, [], 2, [], [], 1, []],
+            [[], [], [], 2, 1, [], 7, 4, []],
+            [[], 5, [], 4, [], [], [], 3, []],
+            [[], 8, [], [], 5, 3, 1, [], [],],
+        ]
+        result1 = helperFuncs.completeSudoku(testSudoku)
+        self.assertEqual(helperFuncs.isSolved(result1) , True)
