@@ -45,7 +45,6 @@ def getRow(grid,row):
     return rowContents
 
 
-
 def getColumn(grid,column):
         # function takes a sudoku grid and a column index and returns the values in the column
     col=[]
@@ -53,8 +52,6 @@ def getColumn(grid,column):
         if (not grid[i][column] == []):
             col.append(grid[i][column])
     return col
-
-
 
 
 def getSquare(grid,row,col):
@@ -79,42 +76,59 @@ def getSquare(grid,row,col):
     return inSquare
 
 
+def sudokuIsFilled(grid):
+    # look into every cell, returns true if they all contain a number, returns false if at least 1 cell contains a list 
+    for row in range(9):
+        for col in range(9):
+            if (isinstance(grid[row][col], list)):
+                return False 
 
-
-
-def isSolved(grid):
-        # function takes a sudoku grid and checks all rows, columns and squares to see if it is solved 
-        # returns a boolean
-    allNums=[1,2,3,4,5,6,7,8,9]
-
-    rowSolved = []
-    colSolved = []
-    squareSolved = []
-
-    for i in range(9):
-        if ( not len(getRow(grid,i)) == 9):
-            return False
-
-    for j in range(9):
-        if ( not len(getColumn(grid,i)) == 9):
-            return False
-
-
-    rowsToCheck=[0,3,6]
-    colsToCheck = [0,3,6]
-    for row in rowsToCheck:
-        for col in colsToCheck:
-            if( not len(getSquare(grid,row,col)) == 9):
-                return False
-    
     return True
 
 
+def isSolved(grid):
+        # function takes a sudoku grid and if it is filled with only integers, 
+        # checks all rows, columns and squares to see if it is solved 
+        # returns a boolean
+    allNums=[1,2,3,4,5,6,7,8,9]
+
+    if (sudokuIsFilled(grid)):
+
+        for row in range(9):
+            r = getRow(grid,row)
+            r.sort()
+            if ( not r == allNums):
+                return False 
+
+        for col in range(9):
+            c = getColumn(grid,col)
+            c.sort()
+            if ( not c == allNums):
+                return False 
+        
+        rowsToCheck = [0,3,6]
+        colsToCheck = [0,3,6]
+        for row in rowsToCheck:
+            for col in colsToCheck:
+                square = getSquare(grid,row,col)
+                square.sort()
+            
+                if( not square == allNums):
+                    return False
+
+
+        return True
+    else :
+        return False
+
+
+isSolved(solvedSudoku)
 
 def fillCell(grid,row,col):
     # finds all possibilities for a given, empty cell, and stores them in a sub array 
     # if only 1 possibility then fills cell
-    rowContents = getRow(grid,row) #.tolist()
+
+    rowContents = getRow(grid,row)
     colContents = getColumn(grid,col)
     squareContents = getSquare(grid,row,col)
 

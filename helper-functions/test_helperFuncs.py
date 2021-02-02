@@ -26,6 +26,20 @@ solvedSudoku=[
     [2, 3, 9, 8, 4, 1, 5, 6, 7]
 ]
 
+sudokuFilledWithPossibilities = [
+    [7, 6, 3, [1, 8], 8, 5, 4, 2, 9], 
+    [4, 1, 5, 9, 6, 2, 3, 7, 8], 
+    [9, 2, 8, [3, 7], 7, 4, [5, 6], 6, 1], 
+    [[1, 2, 6], [4, 7], [1, 2, 4, 6, 7], 5, 3, [1, 7], 9, 8, [4, 6, 7]], 
+    [[1, 8], 3, [1, 4, 7], 6, 4, 9, 2, 5, 7], 
+    [[5, 6, 8], [4, 7], 9, [7, 8], 2, [7, 8], 6, 1, [3, 4]], 
+    [[3, 6], 9, 6, 2, 1, 8, 7, 4, 5], 
+    [[1, 2], 5, [1, 2, 7], 4, 9, [6, 7], 8, 3, [2, 6]], 
+    [2, 8, [4, 7], 7, 5, 3, 1, 9, 6]
+]
+
+
+
 
 class TestHelperFuncs(unittest.TestCase):
 
@@ -53,6 +67,19 @@ class TestHelperFuncs(unittest.TestCase):
         result2 = helperFuncs.getSquare(sudoku,7,7)
         np.testing.assert_array_equal(result2, [7, 4, 3, 1])
 
+    def sudokuIsFilled(self):
+        # returns true for a sudoku full of just numbers 
+        result1 = helperFuncs.getSquare(solvedSudoku)
+        self.assertEqual(result1,True)
+
+        # returns false for a sudoku with sub lists 
+        result2 = helperFuncs.getSquare(sudoku)
+        self.assertEqual(result2,False)
+
+        # returns false for a sudoku where all the cells are filled with either int or list 
+        result3 = helperFuncs.sudokuisFilled(sudokuFilledWithPossibilities)
+        self.asserEqual(result3,False)
+
     def test_isSolved(self):
         # returns true for a fully solved sudoku
         result1 = helperFuncs.isSolved(solvedSudoku)
@@ -61,6 +88,25 @@ class TestHelperFuncs(unittest.TestCase):
         # returns false for an unsolved sudoku
         result2 = helperFuncs.isSolved(sudoku)
         self.assertEqual(result2,False)
+
+        # returns false for a sudoku where all the cells are filled with either int or list 
+        result3 = helperFuncs.isSolved(sudokuFilledWithPossibilities)
+        self.assertEqual(result3,False)
+
+        # returns false for an incorrectly completed sudoku
+        incorrectlySolved = [
+            [1, 2, 7, 1, 5, 4, 3, 9, 6],
+            [9, 6, 5, 3, 2, 7, 1, 4, 8],
+            [3, 4, 1, 6, 8, 9, 7, 5, 2],
+            [5, 9, 3, 4, 6, 8, 2, 7, 1],
+            [4, 7, 2, 5, 1, 3, 6, 8, 9],
+            [6, 1, 8, 9, 7, 2, 4, 3, 5],
+            [7, 8, 6, 2, 3, 5, 9, 1, 4],
+            [1, 5, 4, 7, 9, 6, 8, 2, 3],
+            [2, 3, 9, 8, 4, 1, 5, 6, 7]
+        ]
+        result4 = helperFuncs.isSolved(incorrectlySolved)
+        self.assertEqual(result4,False)
 
     def test_fillCell(self):
         # returns true and fills cell if only one possibility 
@@ -94,3 +140,7 @@ class TestHelperFuncs(unittest.TestCase):
         result2 = helperFuncs.fillCell(testSudoku,0,3)
         self.assertEqual(result2, False)
         self.assertEqual(testSudoku[0][3], [1,8])
+
+
+    # def test_fillGrid(self):
+    #     # returns the suduku with each cell filled with either an int or list length > 0
