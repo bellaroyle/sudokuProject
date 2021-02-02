@@ -142,5 +142,26 @@ class TestHelperFuncs(unittest.TestCase):
         self.assertEqual(testSudoku[0][3], [1,8])
 
 
-    # def test_fillGrid(self):
-    #     # returns the suduku with each cell filled with either an int or list length > 0
+    def test_fillGrid(self):
+        # returns the suduku with each cell filled with either an int or list length > 0
+        testSudoku = [
+            [7, 6, 3, [], [], 5, [], [], 9],
+            [[], 1, 5, [], [], 2, 3, 7, []],
+            [9, 2, 8, [], [], 4, [], [], 1],
+            [[], [], [], 5, 3, [], 9, 8, []],
+            [[], 3, [], 6, [], 9, 2, 5, []],
+            [[], [], 9, [], 2, [], [], 1, []],
+            [[], [], [], 2, 1, [], 7, 4, []],
+            [[], 5, [], 4, [], [], [], 3, []],
+            [[], 8, [], [], 5, 3, 1, [], [],],
+        ]
+        filled = helperFuncs.fillGrid(testSudoku)
+        for row in range(9):
+            for col in range(9):
+                cell = filled[row][col]
+                if (isinstance(cell, list)):
+                    assert(len(cell)>0)
+                else:
+                    assert(isinstance(cell,int))
+                
+    

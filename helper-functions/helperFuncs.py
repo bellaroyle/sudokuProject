@@ -145,3 +145,14 @@ def fillCell(grid,row,col):
     else:
         grid[row][col] = possibilities
         return False 
+
+
+def fillGrid(grid):
+    # loops through all cells and calls fill cell on them
+    for row in range(9):
+        for col in range(9):
+            if (isinstance(grid[row][col], list)):
+                fillCell(grid,row,col)
+    return grid
+
+
