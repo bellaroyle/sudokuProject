@@ -1,4 +1,4 @@
-import numpy as np 
+# import numpy as np 
 
 squareCoordinates = [
         [1, 1, 1, 2, 2, 2, 3, 3, 3],
@@ -122,9 +122,8 @@ def isSolved(grid):
         return False
 
 
-def fillCell(grid,row,col):
-    # finds all possibilities for a given, empty cell, and stores them in a sub array 
-    # if only 1 possibility then fills cell
+def getPossibilities(grid,row,col):
+    #  finds possiblie numbers for a given cell and returns them in a list 
 
     rowContents = getRow(grid,row)
     colContents = getColumn(grid,col)
@@ -137,6 +136,18 @@ def fillCell(grid,row,col):
     for i in range(1,10):
         if (i not in numsUsed):
             possibilities.append(i)
+    return possibilities 
+    
+
+
+def fillCell(grid,row,col):
+    # stores possibilities for a given cell in a sub list if more than 1 
+    # if only 1 possibility then fills cell
+    # returns a bool whether it was able to fill cell 
+
+
+    possibilities = getPossibilities(grid,row,col)
+
     if (len(possibilities) == 1):
         grid[row][col] = possibilities[0]
         return True
@@ -160,7 +171,7 @@ def completeSudoku(grid):
     while isSolved(grid) == False:
         fillGrid(grid)
         i += 1
-        print(i)
+        print("iteration",i)
         if i == 20:
             # return "sudoku too difficult"
             break
