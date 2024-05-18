@@ -1,39 +1,8 @@
 # import numpy as np 
+from dev_data import squareCoordinates
+from dev_data import sudoku
+from dev_data import solvedSudoku
 
-squareCoordinates = [
-        [1, 1, 1, 2, 2, 2, 3, 3, 3],
-        [1, 1, 1, 2, 2, 2, 3, 3, 3],
-        [1, 1, 1, 2, 2, 2, 3, 3, 3],
-        [4, 4, 4, 5, 5, 5, 6, 6, 6],
-        [4, 4, 4, 5, 5, 5, 6, 6, 6],
-        [4, 4, 4, 5, 5, 5, 6, 6, 6],
-        [7, 7, 7, 8, 8, 8, 9, 9, 9],
-        [7, 7, 7, 8, 8, 8, 9, 9, 9],
-        [7, 7, 7, 8, 8, 8, 9, 9, 9]
-    ];
-sudoku = [
-    [7, 6, 3, [], [], 5, [], [], 9],
-    [[], 1, 5, [], [], 2, 3, 7, []],
-    [9, 2, 8, [], [], 4, [], [], 1],
-    [[], [], [], 5, 3, [], 9, 8, []],
-    [[], 3, [], 6, [], 9, 2, 5, []],
-    [[], [], 9, [], 2, [], [], 1, []],
-    [[], [], [], 2, 1, [], 7, 4, []],
-    [[], 5, [], 4, [], [], [], 3, []],
-    [[], 8, [], [], 5, 3, 1, [], []],
-]
-
-solvedSudoku=[
-    [8, 2, 7, 1, 5, 4, 3, 9, 6],
-    [9, 6, 5, 3, 2, 7, 1, 4, 8],
-    [3, 4, 1, 6, 8, 9, 7, 5, 2],
-    [5, 9, 3, 4, 6, 8, 2, 7, 1],
-    [4, 7, 2, 5, 1, 3, 6, 8, 9],
-    [6, 1, 8, 9, 7, 2, 4, 3, 5],
-    [7, 8, 6, 2, 3, 5, 9, 1, 4],
-    [1, 5, 4, 7, 9, 6, 8, 2, 3],
-    [2, 3, 9, 8, 4, 1, 5, 6, 7]
-]
 
 def getRow(grid,row):
     # function takes a sudoku grid and a row index and returns the values in the row
@@ -55,18 +24,7 @@ def getColumn(grid,column):
 
 
 def getSquare(grid,row,col):
-        # function takes a sudoku grid and a square index and returns the values in the square
-    squareCoordinates = [
-        [1, 1, 1, 2, 2, 2, 3, 3, 3],
-        [1, 1, 1, 2, 2, 2, 3, 3, 3],
-        [1, 1, 1, 2, 2, 2, 3, 3, 3],
-        [4, 4, 4, 5, 5, 5, 6, 6, 6],
-        [4, 4, 4, 5, 5, 5, 6, 6, 6],
-        [4, 4, 4, 5, 5, 5, 6, 6, 6],
-        [7, 7, 7, 8, 8, 8, 9, 9, 9],
-        [7, 7, 7, 8, 8, 8, 9, 9, 9],
-        [7, 7, 7, 8, 8, 8, 9, 9, 9]
-    ]
+        # function takes a sudoku grid and a square index (row and column) and returns the values in the square
     square = squareCoordinates[row][col]
     inSquare=[]
     for r in range(9):
@@ -179,6 +137,12 @@ def completeSudoku(grid):
     return grid
 
 def printSudoku(grid):
+    # check if solved and print a message  
+    if isSolved(grid) == False:
+        print("unable to solve sudoku using this method.")
+    else:
+        print("sudoku solved!")
+        
     print('-------------------------')
     print ('| ' + str(grid[0][0]) + ' ' + str(grid[0][1]) + ' ' + str(grid[0][2]) + ' | ' +  str(grid[0][3]) + ' ' + str(grid[0][4]) + ' ' + str(grid[0][5]) + ' | ' + str(grid[0][6]) + ' ' + str(grid[0][7]) + ' ' + str(grid[0][8]) + ' |')
     print ('| ' + str(grid[1][0]) + ' ' + str(grid[1][1]) + ' ' + str(grid[1][2]) + ' | ' +  str(grid[1][3]) + ' ' + str(grid[1][4]) + ' ' + str(grid[1][5]) + ' | ' + str(grid[1][6]) + ' ' + str(grid[1][7]) + ' ' + str(grid[1][8]) + ' |')
@@ -208,18 +172,19 @@ def printSudoku(grid):
 #         [7, [], [], 1, [], 6, [], [], 2],
 #         [[], 9, [], [], [], [], [], 5, []]
 # ];
+'''
+difficult = [
+        [4, [], [], 8, 6, [], [], [], []],
+        [2, [], 7, [], [], 1, [], [], []],
+        [6, [], [], [], 5, [], 3, [], []],
+        [[], [], 1, 6, 2, 8, [], 9, []],
+        [9, [], [], [], [], [], [], [], 3],
+        [[], 6, [], 7, 9, 3, 2, [], []],
+        [[], [], 9, [], 1, [], [], [], 6],
+        [[], [], [], 3, [], [], 5, [], 4],
+        [[], [], [], [], 8, 6, [], [], 2]
+];
 
-# difficult = [
-#         [4, [], [], 8, 6, [], [], [], []],
-#         [2, [], 7, [], [], 1, [], [], []],
-#         [6, [], [], [], 5, [], 3, [], []],
-#         [[], [], 1, 6, 2, 8, [], 9, []],
-#         [9, [], [], [], [], [], [], [], 3],
-#         [[], 6, [], 7, 9, 3, 2, [], []],
-#         [[], [], 9, [], 1, [], [], [], 6],
-#         [[], [], [], 3, [], [], 5, [], 4],
-#         [[], [], [], [], 8, 6, [], [], 2]
-# ];
-
-# difficultResult = completeSudoku(difficult)
-# printSudoku(difficultResult)
+difficultResult = completeSudoku(difficult)
+printSudoku(difficultResult)
+'''
